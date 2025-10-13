@@ -1,0 +1,602 @@
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="utf--8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>عرفان میرزایی — وب‌سایت رسمی</title>
+  <meta name="description" content="۸ سال ترید فارکس • ۶ سال ترید کریپتو • برنامه‌نویس حرفه‌ای پایتون • ۵ سال فرانت‌اند • ۵ سال بک‌اند • سازنده ربات‌های ترید با وین‌ریت ۹۰٪">
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== Design tokens ===== */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    :root{--radius:18px;--shadow:0 14px 36px #0008;--muted:#b9bccf; --transition: .3s;}
+
+    [data-theme="light"]{
+      --bg:#ffffff; --panel:#ffffff; --panel-2:#fdfdff; --text:#1a1b24; --muted:#4a4d69;
+      --link:#e0112b; --brand:#e0112b; --border:#00000018;
+    }
+    [data-theme="dark"]{
+      --bg:#0a0a0a; --panel:#101013; --panel-2:#141418; --text:#f6f7ff; --muted:#c5c7da;
+      --link:#ff5a6c; --brand:#ff1f3d; --border:#ffffff18;
+    }
+
+    /* نرم شدن تعویض تم */
+    body, .panel, .panel-2, .hero-card, .portrait {
+      transition: background-color .45s cubic-bezier(.2,.8,.2,1),
+                  color .45s cubic-bezier(.2,.8,.2,1),
+                  border-color .45s cubic-bezier(.2,.8,.2,1);
+    }
+
+    body{margin:0;font-family:"Vazirmatn",system-ui;color:var(--text);overflow-x:hidden; background-color: var(--bg);}
+    a{color:var(--link);text-decoration:none}
+    a:hover{opacity:.92}
+
+    .container{width:min(1200px,92%);margin-inline:auto}
+    section{padding:80px 0}
+
+    /* ===== Topbar ===== */
+    .topbar{position:fixed;inset:0 0 auto 0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:color-mix(in oklab,var(--bg),transparent 45%);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);z-index:40}
+    .brand{font-weight:900;letter-spacing:.2px}
+    .brand b{background:linear-gradient(90deg,var(--brand),var(--link));-webkit-background-clip:text;color:transparent}
+
+    /* ===== Theme Toggle (Uiverse.io by rishichawda) ===== */
+    .theme-toggle-wrapper { position: fixed; left: 24px; top: 15px; z-index: 50; }
+    #theme-toggle-button { font-size: 17px; position: relative; display: inline-block; width: 3.5em; height: 2em; cursor: pointer; }
+    #toggle { opacity: 0; width: 0; height: 0; }
+    #container, #patches, #stars, #button, #sun, #moon, #cloud { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 0.25s; }
+    #toggle:checked + svg #container { fill: #2b4360; }
+    #toggle:checked + svg #button { transform: translate(28px, 2.333px); }
+    #sun { opacity: 1; }
+    #toggle:checked + svg #sun { opacity: 0; }
+    #moon { opacity: 0; }
+    #toggle:checked + svg #moon { opacity: 1; }
+    #cloud { opacity: 1; }
+    #toggle:checked + svg #cloud { opacity: 0; }
+    #stars { opacity: 0; }
+    #toggle:checked + svg #stars { opacity: 1; }
+
+
+    /* ===== Hero ===== */
+    header.hero{padding-top:98px;min-height:84svh;display:grid;place-items:center}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:center}
+    @media (max-width:980px){.hero-grid{grid-template-columns:1fr; gap: 48px;}}
+    .hero-card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow)}
+    .title{font-size:clamp(32px,6vw,64px);line-height:1.1;margin:0 0 12px 0;font-weight:900}
+    .title .gradient{background:linear-gradient(90deg,var(--brand),var(--link));-webkit-background-clip:text;color:transparent}
+    .badge-row{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 18px}
+    .badge{border:1px solid var(--border);background:var(--panel-2);color:var(--text);padding:8px 12px;border-radius:999px;font-weight:700}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:20px}
+    .portrait{position:relative;width:min(420px,88vw);aspect-ratio:4/5;border-radius:22px;overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow); margin-inline: auto;}
+    .portrait img{width:100%;height:100%;object-fit:cover;display:block}
+    
+    /* ===== Liquid Glass Button ===== */
+    .liquid-glass {
+      position: relative;
+      padding: 1rem 1.5rem;
+      border-radius: 100vmax;
+      isolation: isolate;
+      background-color: rgb(255 255 255 / 25%);
+      color: var(--text);
+      text-shadow: 0 2px 4px rgb(0 0 0 / 10%);
+      font-size: 1rem;
+      font-weight: bold;
+      box-shadow: 0 6px 6px rgb(0 0 0 / 20%), 0 0 20px rgb(0 0 0 / 10%);
+      text-align: center;
+      user-select: none;
+      cursor: pointer;
+      display: inline-block;
+      white-space: nowrap;
+      transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+    }
+
+    .liquid-glass:active {
+      transform: scale(0.97);
+      box-shadow: 0 2px 4px rgb(0 0 0 / 20%), 0 0 10px rgb(0 0 0 / 10%);
+    }
+
+    .liquid-glass::before,
+    .liquid-glass::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+    }
+
+    .liquid-glass::before {
+      backdrop-filter: blur(3px);
+      filter: url(#glass-distortion);
+      z-index: -1;
+    }
+
+    .liquid-glass::after {
+      box-shadow: inset 2px 2px 1px 0 rgb(255 255 255 / 50%), inset -1px -1px 1px 1px rgb(255 255 255 / 50%);
+    }
+
+
+    /* ===== Panels ===== */
+    .panel{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .panel .hd{display:flex;align-items:center;justify-content:space-between;padding:22px 24px;border-bottom:1px solid var(--border)}
+    .panel .bd{padding:22px 24px}
+    .list{margin:0;padding:0 18px 0 0;line-height:1.9}
+    
+    /* ===== Projects / Skills ===== */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; justify-items: center; }
+    @media (max-width: 720px) { .grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); } }
+    
+    .project-card-container {
+      position: relative; width: 100%; height: 300px; max-width: 320px; margin-inline: auto;
+    }
+    .project-card-container:active { transform: scale(0.97); }
+
+    .canvas {
+      perspective: 800px; inset: 0; z-index: 10; position: absolute; display: grid;
+      grid-template-columns: repeat(5, 1fr); grid-template-rows: repeat(5, 1fr);
+    }
+
+    .project-card {
+      position: absolute; inset: 0; z-index: 0; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; padding: 20px;
+      text-align: center; border-radius: 20px; transition: transform 125ms ease-in-out, box-shadow 125ms ease-in-out;
+      background-size: cover; background-position: center; color: white; overflow: hidden;
+      box-shadow: 0 10px 20px #00000030;
+    }
+    #card-crypto { background-image: url('assets/projects/crypto.png'); }
+    #card-forex { background-image: url('assets/projects/forex.png'); }
+    #card-python { background-image: url('assets/projects/python.png'); }
+
+    /* Dark overlay for text readability */
+    .project-card::after {
+      content: ''; position: absolute; inset: 0; z-index: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.0) 50%, rgba(0,0,0,0.85) 100%);
+      border-radius: 20px;
+    }
+
+    .project-card .card-title, .project-card .card-subtitle {
+      position: relative; z-index: 1; text-shadow: 0 2px 5px #000c;
+    }
+    .project-card .card-title { font-size: 1.5rem; font-weight: bold; margin-bottom: 4px; }
+    .project-card .card-subtitle { font-size: 0.9rem; color: #fffc; }
+    
+    .tracker { z-index: 10; width: 100%; height: 100%; }
+    .tracker:hover { cursor: pointer; }
+    
+    /* 3D tilt transformations */
+    .tr-1:hover ~ .project-card { transition: 125ms ease-in-out; transform: rotateX(20deg) rotateY(-10deg) rotateZ(0deg); box-shadow: 0 25px 35px #00000050; }
+    .tr-2:hover ~ .project-card { transition: 125ms ease-in-out; transform: rotateX(20deg) rotateY(-5deg) rotateZ(0deg); box-shadow: 0 25px 35px #00000050; }
+    .tr-3:hover ~ .project-card { transition: 125ms ease-in-out; transform: rotateX(20deg) rotateY(0deg) rotateZ(0deg); box-shadow: 0 25px 35px #00000050; }
+    .tr-4:hover ~ .project-card { transition: 125ms ease-in-out; transform: rotateX(20deg) rotateY(5deg) rotateZ(0deg); box-shadow: 0 25px 35px #00000050; }
+    .tr-5:hover ~ .project-card { transition: 125ms ease-in-out; transform: rotateX(20deg) rotateY(10deg) rotateZ(0deg); box-shadow: 0 25px 35px #00000050; }
+    .tr-6:hover ~ .project-card { transition: 125ms ease-in-out; transform: rotateX(10deg) rotateY(-10deg) rotateZ(0deg); box-shadow: 0 25px 35px #00000050; }
+    .tr-7:hover ~ .project-card { transition: 125ms ease-in-out; transform: rotateX(10deg) rotateY(-5deg) rotateZ(0deg); box-shadow: 0 25px 35px #00000050; }
+    .tr-8:hover ~ .project-card { transition: 125ms ease-in-out; transform: rotateX(10deg) rotateY(0deg) rotateZ(0deg); box-shadow: 0 25px 35px #00000050; }
+    .tr-9:hover ~ .project-card { transition: 125ms ease-in-out; transform: rotateX(10deg) rotateY(5deg) rotateZ(0deg); box-shadow: 0 25px 35px #00000050; }
+    .tr-10:hover ~ .project-card { transition: 125ms ease-in-out; transform: rotateX(10deg) rotateY(10deg) rotateZ(0deg); box-shadow: 0 25px 35px #00000050; }
+    .tr-11:hover ~ .project-card { transition: 125ms ease-in-out; transform: rotateX(0deg) rotateY(-10deg) rotateZ(0deg); box-shadow: 0 25px 35px #00000050; }
+    .tr-12:hover ~ .project-card { transition: 125ms ease-in-out; transform: rotateX(0deg) rotateY(-5deg) rotateZ(0deg); box-shadow: 0 25px 35px #00000050; }
+    .tr-13:hover ~ .project-card { transition: 125ms ease-in-out; transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); box-shadow: 0 25px 35px #00000050; }
+    .tr-14:hover ~ .project-card { transition: 125ms ease-in-out; transform: rotateX(0deg) rotateY(5deg) rotateZ(0deg); box-shadow: 0 25px 35px #00000050; }
+    .tr-15:hover ~ .project-card { transition: 125ms ease-in-out; transform: rotateX(0deg) rotateY(10deg) rotateZ(0deg); box-shadow: 0 25px 35px #00000050; }
+    .tr-16:hover ~ .project-card { transition: 125ms ease-in-out; transform: rotateX(-10deg) rotateY(-10deg) rotateZ(0deg); box-shadow: 0 25px 35px #00000050; }
+    .tr-17:hover ~ .project-card { transition: 125ms ease-in-out; transform: rotateX(-10deg) rotateY(-5deg) rotateZ(0deg); box-shadow: 0 25px 35px #00000050; }
+    .tr-18:hover ~ .project-card { transition: 125ms ease-in-out; transform: rotateX(-10deg) rotateY(0deg) rotateZ(0deg); box-shadow: 0 25px 35px #00000050; }
+    .tr-19:hover ~ .project-card { transition: 125ms ease-in-out; transform: rotateX(-10deg) rotateY(5deg) rotateZ(0deg); box-shadow: 0 25px 35px #00000050; }
+    .tr-20:hover ~ .project-card { transition: 125ms ease-in-out; transform: rotateX(-10deg) rotateY(10deg) rotateZ(0deg); box-shadow: 0 25px 35px #00000050; }
+    .tr-21:hover ~ .project-card { transition: 125ms ease-in-out; transform: rotateX(-20deg) rotateY(-10deg) rotateZ(0deg); box-shadow: 0 25px 35px #00000050; }
+    .tr-22:hover ~ .project-card { transition: 125ms ease-in-out; transform: rotateX(-20deg) rotateY(-5deg) rotateZ(0deg); box-shadow: 0 25px 35px #00000050; }
+    .tr-23:hover ~ .project-card { transition: 125ms ease-in-out; transform: rotateX(-20deg) rotateY(0deg) rotateZ(0deg); box-shadow: 0 25px 35px #00000050; }
+    .tr-24:hover ~ .project-card { transition: 125ms ease-in-out; transform: rotateX(-20deg) rotateY(5deg) rotateZ(0deg); box-shadow: 0 25px 35px #00000050; }
+    .tr-25:hover ~ .project-card { transition: 125ms ease-in-out; transform: rotateX(-20deg) rotateY(10deg) rotateZ(0deg); box-shadow: 0 25px 35px #00000050; }
+
+    .noselect { -webkit-touch-callout: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+
+    /* استایل جدید برای لینک (بدون تأثیر روی hover) */
+    .project-link {
+      display: block;
+      width: 100%;
+      height: 100%;
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    /* ===== AI Analyst Section ===== */
+    .ai-analyst-form {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+      margin: 24px 0;
+      flex-wrap: wrap;
+    }
+    #symbolInput {
+      padding: 1rem 1.5rem;
+      border-radius: 100vmax;
+      border: 1px solid var(--border);
+      background-color: var(--panel-2);
+      color: var(--text);
+      font-family: "Vazirmatn", system-ui;
+      font-size: 1rem;
+      min-width: 250px;
+      text-align: center;
+      transition: var(--transition);
+    }
+    #symbolInput:focus {
+      outline: none;
+      border-color: var(--brand);
+      box-shadow: 0 0 10px color-mix(in oklab, var(--brand), transparent 70%);
+    }
+    .analysis-result {
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+      min-height: 100px;
+      text-align: right;
+      line-height: 1.8;
+      white-space: pre-wrap; /* To respect newlines from the AI */
+      background: var(--panel-2);
+      position: relative;
+    }
+
+    /* Loading Spinner */
+    .loader {
+        border: 4px solid var(--border);
+        border-top: 4px solid var(--brand);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -20px;
+        margin-left: -20px;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    /* ===== Contact ===== */
+    .contact-box{display:grid;place-items:center;padding:24px;gap:12px;text-align:center}
+    .contact-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+
+    /* Footer */
+    footer{padding:24px 0;border-top:1px solid var(--border);color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+    /* Scroll-reveal */
+    .reveal{opacity:0;transform:translateY(16px);transition:opacity .5s ease, transform .5s ease}
+    .reveal.is-in{opacity:1;transform:none}
+
+    @media (prefers-reduced-motion:reduce){
+      .reveal{opacity:1;transform:none}
+      .sparkle-button, .project-card-container {transition:none}
+    }
+  </style>
+</head>
+<body>
+  <!-- SVG Filter -->
+  <svg xmlns="http://www.w3.org/2000/svg" role="presentation" style="display: none">
+    <filter id="glass-distortion" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+      <feTurbulence type="fractalNoise" baseFrequency="0.001 0.005" numOctaves="1" seed="17" result="turbulence"/>
+      <feComponentTransfer in="turbulence" result="mapped">
+        <feFuncR type="gamma" amplitude="1" exponent="10" offset="0.5" />
+        <feFuncG type="gamma" amplitude="0" exponent="1" offset="0" />
+        <feFuncB type="gamma" amplitude="0" exponent="1" offset="0.5" />
+      </feComponentTransfer>
+      <feGaussianBlur in="turbulence" stdDeviation="3" result="softMap" />
+      <feSpecularLighting in="softMap" surfaceScale="5" specularConstant="1" specularExponent="100" lighting-color="white" result="specLight">
+        <fePointLight x="-200" y="-200" z="300" />
+      </feSpecularLighting>
+      <feComposite in="specLight" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="litImage" />
+      <feDisplacementMap in="SourceGraphic" in2="softMap" scale="200" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </svg>
+  <!-- SVG Filter -->
+
+  <div class="topbar">
+    <div class="brand">ERFAN <b>DEV</b></div>
+    <div class="theme-toggle-wrapper">
+      <label id="theme-toggle-button">
+        <input type="checkbox" id="toggle">
+        <svg viewBox="0 0 69.667 37" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(3.5 3.5)" data-name="Component 15 – 1" id="Component_15_1">
+            <g filter="url(#container)" transform="matrix(1, 0, 0, 1, -3.5, -3.5)">
+              <rect fill="#83cbd8" transform="translate(3.5 3.5)" rx="17.5" height="35" width="60.667" data-name="container" id="container"></rect>
+            </g>
+            <g transform="translate(2.333 2.333)" id="button">
+              <g data-name="sun" id="sun">
+                <g filter="url(#sun-outer)" transform="matrix(1, 0, 0, 1, -5.83, -5.83)">
+                  <circle fill="#f8e664" transform="translate(5.83 5.83)" r="15.167" cy="15.167" cx="15.167" data-name="sun-outer" id="sun-outer-2"></circle>
+                </g>
+                <g filter="url(#sun)" transform="matrix(1, 0, 0, 1, -5.83, -5.83)">
+                  <path fill="rgba(246,254,247,0.29)" transform="translate(9.33 9.33)" d="M11.667,0A11.667,11.667,0,1,1,0,11.667,11.667,11.667,0,0,1,11.667,0Z" data-name="sun" id="sun-3"></path>
+                </g>
+                <circle fill="#fcf4b9" transform="translate(8.167 8.167)" r="7" cy="7" cx="7" id="sun-inner"></circle>
+              </g>
+              <g data-name="moon" id="moon">
+                <g filter="url(#moon)" transform="matrix(1, 0, 0, 1, -31.5, -5.83)">
+                  <circle fill="#cce6ee" transform="translate(31.5 5.83)" r="15.167" cy="15.167" cx="15.167" data-name="moon" id="moon-3"></circle>
+                </g>
+                <g fill="#a6cad0" transform="translate(-24.415 -1.009)" id="patches">
+                  <circle transform="translate(43.009 4.496)" r="2" cy="2" cx="2"></circle>
+                  <circle transform="translate(39.366 17.952)" r="2" cy="2" cx="2" data-name="patch"></circle>
+                  <circle transform="translate(33.016 8.044)" r="1" cy="1" cx="1" data-name="patch"></circle>
+                  <circle transform="translate(51.081 18.888)" r="1" cy="1" cx="1" data-name="patch"></circle>
+                  <circle transform="translate(33.016 22.503)" r="1" cy="1" cx="1" data-name="patch"></circle>
+                  <circle transform="translate(50.081 10.53)" r="1.5" cy="1.5" cx="1.5" data-name="patch"></circle>
+                </g>
+              </g>
+            </g>
+            <g filter="url(#cloud)" transform="matrix(1, 0, 0, 1, -3.5, -3.5)">
+              <path fill="#fff" transform="translate(-3466.47 -160.94)" d="M3512.81,173.815a4.463,4.463,0,0,1,2.243.62.95.95,0,0,1,.72-1.281,4.852,4.852,0,0,1,2.623.519c.034.02-.5-1.968.281-2.716a2.117,2.117,0,0,1,2.829-.274,1.821,1.821,0,0,1,.854,1.858c.063.037,2.594-.049,3.285,1.273s-.865,2.544-.807,2.626a12.192,12.192,0,0,1,2.278.892c.553.448,1.106,1.992-1.62,2.927a7.742,7.742,0,0,1-3.762-.3c-1.28-.49-1.181-2.65-1.137-2.624s-1.417,2.2-2.623,2.2a4.172,4.172,0,0,1-2.394-1.206,3.825,3.825,0,0,1-2.771.774c-3.429-.46-2.233-3.267-2.2-3.55A3.721,3.721,0,0,1,3512.81,173.815Z" data-name="cloud" id="cloud"></path>
+            </g>
+            <g fill="#def8ff" transform="translate(3.585 1.325)" id="stars">
+              <path transform="matrix(-1, 0.017, -0.017, -1, 24.231, 3.055)" d="M.774,0,.566.559,0,.539.458.933.25,1.492l.485-.361.458.394L1.024.953,1.509.592.943.572Z"></path>
+              <path transform="matrix(-0.777, 0.629, -0.629, -0.777, 23.185, 12.358)" d="M1.341.529.836.472.736,0,.505.46,0,.4.4.729l-.231.46L.605.932l.4.326L.9.786Z" data-name="star"></path>
+              <path transform="matrix(0.438, 0.899, -0.899, 0.438, 23.177, 29.735)" d="M.015,1.065.475.9l.285.365L.766.772l.46-.164L.745.494.751,0,.481.407,0,.293.285.658Z" data-name="star"></path>
+              <path transform="translate(12.677 0.388) rotate(104)" d="M1.161,1.6,1.059,1,1.574.722.962.607.86,0,.613.572,0,.457.446.881.2,1.454l.516-.274Z" data-name="star"></path>
+              <path transform="matrix(-0.07, 0.998, -0.998, -0.07, 11.066, 15.457)" d="M.873,1.648l.114-.62L1.579.945,1.03.62,1.144,0,.706.464.157.139.438.7,0,1.167l.592-.083Z" data-name="star"></path>
+              <path transform="translate(8.326 28.061) rotate(11)" d="M.593,0,.638.724,0,.982l.7.211.045.724.36-.64.7.211L1.342.935,1.7.294,1.063.552Z" data-name="star"></path>
+              <path transform="translate(5.012 5.962) rotate(172)" d="M.816,0,.5.455,0,.311.323.767l-.312.455.516-.215.323.456L.827.911,1.343.7.839.552Z" data-name="star"></path>
+              <path transform="translate(2.218 14.616) rotate(169)" d="M1.261,0,.774.571.114.3.487.967,0,1.538.728,1.32l.372.662.047-.749.728-.218L1.215.749Z" data-name="star"></path>
+            </g>
+          </g>
+        </svg>
+      </label>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero container" id="home">
+    <div class="hero-grid">
+      <div class="hero-card reveal">
+        <h1 class="title"><span class="gradient">عرفان میرزایی</span></h1>
+        <div class="badge-row">
+          <span class="badge">۸ سال سابقهٔ ترید فارکس</span>
+          <span class="badge">۶ سال سابقهٔ ترید ارزدیجیتال</span>
+          <span class="badge">برنامه‌نویس حرفه‌ای پایتون</span>
+          <span class="badge">۵ سال سابقهٔ فرانت‌اند</span>
+          <span class="badge">۵ سال سابقهٔ بک‌اند</span>
+          <span class="badge">سازندهٔ ربات‌های ترید با وین‌ریت ۹۰٪</span>
+        </div>
+        <div class="cta-row">
+          <a href="#contact">
+            <div class="liquid-glass">ارتباط با من</div>
+          </a>
+          <a href="#projects">
+            <div class="liquid-glass">مهارت های من</div>
+          </a>
+        </div>
+      </div>
+
+      <div class="portrait reveal">
+        <img id="portrait" src="assets/عرفان میرزایی.png" alt="پرتره عرفان — حالت شب" />
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ABOUT -->
+    <section id="about" class="container">
+      <div class="panel reveal">
+        <div class="hd"><h2>دربارهٔ من</h2></div>
+        <div class="bd">
+          <ul class="list">
+            <li>دارنده <strong>۸ سال سابقهٔ ترید در فارکس</strong> با استراتژی‌های داده‌محور و مدیریت سرمایه دقیق.</li>
+            <li>دارنده <strong>۶ سال سابقهٔ ترید در ارزدیجیتال</strong> با پایبندی به ریسک کنترلی و اجرای منظم پلن.</li>
+            <li><strong>برنامه‌نویس حرفه‌ای پایتون</strong>: Async I/O، FastAPI، NumPy/Pandas، Multi-Processing، WebSocket، REST، ORM.</li>
+            <li><strong>۵ سال فرانت‌اند</strong>: HTML5/CSS3/JS، ریسپانسیو، بهینه‌سازی لود و UX.</li>
+            <li><strong>۵ سال بک‌اند</strong>: طراحی API، امنیت پایه، بهینه‌سازی Query و کش، دیپلوی و مانیتورینگ سبک.</li>
+            <li><strong>ساخت ربات‌های ترید کریپتو/فارکس با وین‌ریت ۹۰٪</strong> روی سناریوهای تعریف‌شده.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="container">
+      <div class="panel reveal">
+        <div class="hd"><h2>مهارت های منتخب</h2></div>
+        <div class="bd">
+          <div class="grid">
+
+            <div class="project-card-container noselect reveal">
+              <a href="projects/erfantrader.html" class="project-link">
+                <div class="canvas">
+                  <div class="tracker tr-1"></div><div class="tracker tr-2"></div><div class="tracker tr-3"></div><div class="tracker tr-4"></div><div class="tracker tr-5"></div>
+                  <div class="tracker tr-6"></div><div class="tracker tr-7"></div><div class="tracker tr-8"></div><div class="tracker tr-9"></div><div class="tracker tr-10"></div>
+                  <div class="tracker tr-11"></div><div class="tracker tr-12"></div><div class="tracker tr-13"></div><div class="tracker tr-14"></div><div class="tracker tr-15"></div>
+                  <div class="tracker tr-16"></div><div class="tracker tr-17"></div><div class="tracker tr-18"></div><div class="tracker tr-19"></div><div class="tracker tr-20"></div>
+                  <div class="tracker tr-21"></div><div class="tracker tr-22"></div><div class="tracker tr-23"></div><div class="tracker tr-24"></div><div class="tracker tr-25"></div>
+                  <div class="project-card" id="card-crypto">
+                    <div class="card-title">۶ سال ترید ارزدیجیتال</div>
+                    <div class="card-subtitle">کلیک برای جزئیات</div>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div class="project-card-container noselect reveal">
+              <a href="projects/backtestx.html" class="project-link">
+                <div class="canvas">
+                  <div class="tracker tr-1"></div><div class="tracker tr-2"></div><div class="tracker tr-3"></div><div class="tracker tr-4"></div><div class="tracker tr-5"></div>
+                  <div class="tracker tr-6"></div><div class="tracker tr-7"></div><div class="tracker tr-8"></div><div class="tracker tr-9"></div><div class="tracker tr-10"></div>
+                  <div class="tracker tr-11"></div><div class="tracker tr-12"></div><div class="tracker tr-13"></div><div class="tracker tr-14"></div><div class="tracker tr-15"></div>
+                  <div class="tracker tr-16"></div><div class="tracker tr-17"></div><div class="tracker tr-18"></div><div class="tracker tr-19"></div><div class="tracker tr-20"></div>
+                  <div class="tracker tr-21"></div><div class="tracker tr-22"></div><div class="tracker tr-23"></div><div class="tracker tr-24"></div><div class="tracker tr-25"></div>
+                  <div class="project-card" id="card-forex">
+                    <div class="card-title">۸ سال ترید فارکس</div>
+                    <div class="card-subtitle">کلیک برای جزئیات</div>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div class="project-card-container noselect reveal">
+              <a href="projects/apihub.html" class="project-link">
+                <div class="canvas">
+                  <div class="tracker tr-1"></div><div class="tracker tr-2"></div><div class="tracker tr-3"></div><div class="tracker tr-4"></div><div class="tracker tr-5"></div>
+                  <div class="tracker tr-6"></div><div class="tracker tr-7"></div><div class="tracker tr-8"></div><div class="tracker tr-9"></div><div class="tracker tr-10"></div>
+                  <div class="tracker tr-11"></div><div class="tracker tr-12"></div><div class="tracker tr-13"></div><div class="tracker tr-14"></div><div class="tracker tr-15"></div>
+                  <div class="tracker tr-16"></div><div class="tracker tr-17"></div><div class="tracker tr-18"></div><div class="tracker tr-19"></div><div class="tracker tr-20"></div>
+                  <div class="tracker tr-21"></div><div class="tracker tr-22"></div><div class="tracker tr-23"></div><div class="tracker tr-24"></div><div class="tracker tr-25"></div>
+                  <div class="project-card" id="card-python">
+                    <div class="card-title">پایتون و فول‌استک</div>
+                    <div class="card-subtitle">کلیک برای جزئیات</div>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI Analyst -->
+    <section id="ai-analyst" class="container">
+      <div class="panel reveal">
+        <div class="hd"><h2>هوش مصنوعی تحلیلگر</h2></div>
+        <div class="bd" style="text-align: center;">
+          <p>نام یک جفت ارز (مانند EUR/USD) یا نماد سهام (مانند AAPL) را وارد کنید تا تحلیلی کوتاه و به‌روز از وضعیت بازار، شامل آخرین اخبار و سنتیمنت کلی، مستقیماً از هوش مصنوعی Gemini دریافت کنید.</p>
+          <div class="ai-analyst-form">
+            <input type="text" id="symbolInput" placeholder="مثلاً: AAPL یا EUR/USD">
+            <button id="getAnalysisBtn" class="liquid-glass">دریافت تحلیل</button>
+          </div>
+          <div id="analysisResult" class="analysis-result">
+            <!-- نتایج تحلیل در اینجا نمایش داده می‌شود -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="container">
+      <div class="panel reveal">
+        <div class="hd"><h2>تماس با من</h2></div>
+        <div class="bd contact-box">
+          <p>برای ارتباط مستقیم با من یکی از روش‌های زیر را انتخاب کنید:</p>
+          <div class="contact-actions">
+            <a href="https://t.me/Tionl" target="_blank" rel="noopener">
+               <div class="liquid-glass">ارتباط با من از طریق تلگرام</div>
+            </a>
+            <a href="mailto:erfanmirzaii70@gmail.com">
+              <div class="liquid-glass">ارتباط با من از طریق ایمیل</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    <div>© <span id="year"></span> عرفان میرزایی</div><div></div>
+  </footer>
+
+  <script>
+    // --- Theme toggle
+    const root = document.documentElement;
+    const toggle = document.getElementById('toggle');
+    const img  = document.getElementById('portrait');
+    
+    const applyTheme = t => {
+      root.setAttribute('data-theme', t);
+      img.src = t === 'dark' ? 'assets/عرفان میرزایی.png' : 'assets/erfan mirzaii.png';
+      img.alt = t === 'dark' ? 'پرتره عرفان — حالت شب' : 'پرتره عرفان — حالت روز';
+      localStorage.setItem('theme', t);
+      toggle.checked = t === 'dark';
+    };
+
+    // Initial theme load
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    applyTheme(savedTheme);
+
+    // Event listener for theme change
+    toggle.addEventListener('change', (e) => {
+      applyTheme(e.target.checked ? 'dark' : 'light');
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // --- Scroll reveal
+    const io = new IntersectionObserver(es=>{
+      es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target);} });
+    },{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // --- Page transition
+    document.addEventListener('click',(e)=>{
+      const a=e.target.closest('a'); if(!a) return;
+      const href=a.getAttribute('href'); if(!href || href.startsWith('#') || a.target==='_blank') return;
+      
+      const internal = a.host===location.host || href.endsWith('.html') || href.startsWith('./') || href.startsWith('../');
+      if(!internal) return;
+      if(!('animate' in document.body)) return;
+      e.preventDefault();
+      document.body.animate([{opacity:1,transform:'translateY(0)'},{opacity:0,transform:'translateY(8px)'}],{duration:260,easing:'cubic-bezier(.2,.8,.2,1)',fill:'forwards'}).onfinish=()=>location.href=href;
+    });
+
+    // --- AI Market Analyst ---
+    const getAnalysisBtn = document.getElementById('getAnalysisBtn');
+    const symbolInput = document.getElementById('symbolInput');
+    const analysisResult = document.getElementById('analysisResult');
+
+    getAnalysisBtn.addEventListener('click', async () => {
+      const symbol = symbolInput.value.trim();
+      if (!symbol) {
+        analysisResult.textContent = 'لطفاً یک نماد یا جفت ارز وارد کنید.';
+        return;
+      }
+
+      analysisResult.innerHTML = '<div class="loader"></div>';
+
+      const systemPrompt = "You are a world-class financial analyst. Provide a concise, single-paragraph summary of the key market status for the given symbol, including recent news and overall sentiment. Respond in Persian. Keep it brief and to the point.";
+      const userQuery = `Provide a market analysis for the symbol: ${symbol}`;
+      const apiKey = ""; // This will be automatically provided in the environment.
+      const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+      const payload = {
+        contents: [{ parts: [{ text: userQuery }] }],
+        tools: [{ "google_search": {} }],
+        systemInstruction: {
+          parts: [{ text: systemPrompt }]
+        },
+      };
+
+      try {
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+            throw new Error(`خطا در ارتباط با API: ${response.statusText}`);
+        }
+
+        const result = await response.json();
+        const candidate = result.candidates?.[0];
+
+        if (candidate && candidate.content?.parts?.[0]?.text) {
+          const text = candidate.content.parts[0].text;
+          analysisResult.innerHTML = ''; // Clear loader
+          analysisResult.textContent = text;
+        } else {
+          // Check for safety ratings or other reasons for no content
+          const reason = candidate?.finishReason;
+          if (reason === 'SAFETY') {
+              throw new Error('پاسخ به دلیل محدودیت‌های ایمنی مسدود شد.');
+          } else {
+              throw new Error('پاسخ معتبری از هوش مصنوعی دریافت نشد.');
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching analysis:", error);
+        analysisResult.innerHTML = ''; // Clear loader
+        analysisResult.textContent = `متأسفانه خطایی رخ داد: ${error.message}`;
+      }
+    });
+  </script>
+</body>
+</html>
